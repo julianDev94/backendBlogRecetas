@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const recetaSchema = new Schema({
     titulo: {
@@ -42,6 +42,33 @@ const recetaSchema = new Schema({
         trim:true
     },
     urlImagen:{
-    
+        type:String,
+        validate: {
+            validator: (datoUrl)=>{
+                const regex = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
+                const urlValidada = regex.test(datoUrl);
+                return urlValidada;
+            },
+            message: "La URL de la imagen no tiene el formato válido"
+        },
+        trim: true,
+        required: true
+    },
+    ingredientes: {
+        type: String,
+        required: true,
+        minLength: 3,
+        maxLength: 50,
+        trim: true
+    },
+    pasos:{
+        type: String,
+        required: true,
+        minLength: 3,
+        maxLength: 50,
+        trim: true
     }
-})
+});
+
+const Receta = mongoose.model('receta', recetaSchema);
+export default Receta;
