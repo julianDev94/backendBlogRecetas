@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import 'dotenv/config';
-
+import rutasRecetas from './src/routes/receta.routes';
 
 // 1- Configuro un puerto para el servidor
 const app = express();
@@ -21,4 +21,4 @@ app.use(express.urlencoded({extended:true}));
 
 
 // 3- configuro las rutas
-// app.use('/api',);
+app.use('/api',rutasRecetas);
