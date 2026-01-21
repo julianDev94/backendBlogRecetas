@@ -45,3 +45,18 @@ export const crearReceta = async (req, res) => {
     res.status(400).json({mensaje: 'Ops, ha ocurrido un problema intentalo nuevamente más tarde'});
   }
 };
+
+export const editarReceta = async(req,res)=>{
+    try {
+        const recetaEncontrada = await Receta.findById(req.params.id);
+        if(!recetaEncontrada){
+            res.status(400).json({mensaje: 'No se pudo modificar la receta'})
+        }
+
+        const recetaModificada = await Receta.findByIdAndUpdate(req.params.id, req.body);
+        res.status(200).json({mensaje: 'Receta modificada con exito', recetaModificada});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: 'No se pudo completar la modificacion de la receta, vuelva a intentarlo luego nuevamente'});
+    }
+}

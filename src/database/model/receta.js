@@ -6,7 +6,8 @@ const recetaSchema = new Schema({
         required: true,
         minLength: 4,
         maxLength: 50,
-        trim: true
+        trim: true,
+        unique: true
     },
     categoria:{
         type: String,
@@ -52,7 +53,8 @@ const recetaSchema = new Schema({
             message: "La URL de la imagen no tiene el formato válido"
         },
         trim: true,
-        required: true
+        required: true,
+        unique: true
     },
     ingredientes: {
         type: String,
