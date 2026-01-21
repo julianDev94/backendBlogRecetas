@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import 'dotenv/config';
-import rutasRecetas from './src/routes/receta.routes';
-
+import rutasRecetas from './src/routes/receta.routes.js';
+import './src/database/conexionDB.js'
 // 1- Configuro un puerto para el servidor
 const app = express();
 
