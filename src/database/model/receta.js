@@ -57,18 +57,25 @@ const recetaSchema = new Schema({
         unique: true
     },
     ingredientes: {
-        type: String,
+        type: [String],
         required: true,
-        minLength: 3,
-        maxLength: 50,
-        trim: true
+        validate: {
+            validator: function(arrayIngrediente){
+                return arrayIngrediente.length >=1;
+            },
+            message: 'Debe haber al menos 1 ingrediente'
+        }
     },
     pasos:{
-        type: String,
+        type: [String],
         required: true,
-        minLength: 3,
-        maxLength: 50,
-        trim: true
+        validate: {
+            validator: function(arrayPasos){
+                return arrayPasos.length >=1;
+            },
+            message: 'Debe haber al menos 1 paso'
+        }
+        
     }
 });
 

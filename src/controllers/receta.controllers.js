@@ -54,7 +54,7 @@ export const editarReceta = async(req,res)=>{
         }
 
         const recetaModificada = await Receta.findByIdAndUpdate(req.params.id, req.body);
-        res.status(201).json({mensaje: 'Receta modificada con exito', recetaModificada});
+        res.status(200).json({mensaje: 'Receta modificada con exito', recetaModificada});
     } catch (error) {
         console.error(error);
         res.status(500).json({mensaje: 'No se pudo completar la modificacion de la receta, vuelva a intentarlo luego nuevamente'});
@@ -69,7 +69,7 @@ export const eliminarUnaReceta = async (req, res)=>{
         }
 
         const eliminarReceta = await Receta.findByIdAndDelete(req.params.id);
-        res.status(201).json({mensaje: 'La receta se ha eliminado con exito', eliminarReceta});
+        res.status(200).json({mensaje: 'La receta se ha eliminado con exito', eliminarReceta});
     } catch (error) {
         console.log(error);
         res.status(500).json({mensaje: 'La receta no se pudo eliminar, intentelo nuevamente mas tarde'});
