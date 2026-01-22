@@ -4,6 +4,6 @@ import { crearReceta, editarReceta, eliminarUnaReceta, listaRecetas, obtenerUnaR
 const router = Router();
 
 router.route('/recetas').get(listaRecetas).post(crearReceta);
-router.route('/receta/:id').get(obtenerUnaReceta).put(editarReceta).delete(eliminarUnaReceta);
+router.route('/recetas/:id').get(obtenerUnaReceta).put(editarReceta).delete(eliminarUnaReceta);
 
 export default router;
