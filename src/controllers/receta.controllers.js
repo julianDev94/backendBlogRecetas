@@ -54,7 +54,7 @@ export const editarReceta = async(req,res)=>{
         }
 
         const recetaModificada = await Receta.findByIdAndUpdate(req.params.id, req.body);
-        res.status(201).json({mensaje: 'Receta modificada con exito', recetaModificada});
+        res.status(200).json({mensaje: 'Receta modificada con exito', recetaModificada});
     } catch (error) {
         console.error(error);
         res.status(500).json({mensaje: 'No se pudo completar la modificacion de la receta, vuelva a intentarlo luego nuevamente'});
