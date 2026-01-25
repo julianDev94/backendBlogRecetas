@@ -20,3 +20,23 @@ export const login = async(req,res)=>{
         res.status(500).json({mensaje: 'Error al intentar loguear al usuario'});
     }
 }
+
+export const crearUsuario = async (req,res) =>{
+    try {
+        const {usuario, password} = req.body;
+        const usuarioEncontrado = await Usuario.findOne({usuario});
+        if(usuarioEncontrado){
+            res.status(200).json({mensaje: 'El usuario ingresado ya existe, vuelva a ingresar otro nuevamente'});
+        }
+
+        const saltos = bcrypt.genSaltSync(10);
+        const passEncriptada = bcrypt.hashSync(password,saltos );
+        const usuarioNuevo = new Usuario(req.body);
+        usuarioNuevo.password = passEncriptada;
+        await usuarioNuevo.save();
+        res.status(201).json({mensaje: 'El usuario fue creado con exito!'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: 'No se pudo completar la solicitud, vuelva a intentarlo en otro momento'});
+    }
+}
