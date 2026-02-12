@@ -1,5 +1,5 @@
 import {check} from 'express-validator';
-
+import resultadoValidaciones from './resultadoValidaciones.js';
 const validarRecetas = [
     check('titulo').notEmpty().withMessage("El titulo es obligatorio").trim().isLength({min: 4, max:50}).withMessage("El  titulo debe tener entre 4 y 50 caracteres"),
     check('categoria').notEmpty().withMessage("La categoria es obligatoria"),
