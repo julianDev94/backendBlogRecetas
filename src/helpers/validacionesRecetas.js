@@ -13,6 +13,6 @@ export const validarRecetas = [
     check('pasos').isArray({min: 1}).withMessage('Debe existir al menos 1 paso'),
     check('pasos.*').trim().isLength({min: 3, max: 50}).withMessage("Los pasos tiene entre 3 y 50 caracteres"),
     (req,res,next)=>{
-        
+        resultadoValidaciones(req,res,next);
     }
 ]
