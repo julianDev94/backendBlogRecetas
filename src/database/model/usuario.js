@@ -1,5 +1,4 @@
-import { Schema } from "mongoose";
-
+import { Schema, mongoose } from "mongoose";
 const usuarioSchema = new Schema({
     usuario:{
         type: String,
