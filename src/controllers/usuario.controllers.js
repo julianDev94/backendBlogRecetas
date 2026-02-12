@@ -3,13 +3,13 @@ import bcrypt from 'bcrypt';
 
 export const login = async(req,res)=>{
     try {
-        const {usuario, pass} = req.body
+        const {usuario, contrasenia} = req.body
         const usuarioEncontrado = await Usuario.findOne({usuario});
         if(!usuarioEncontrado){
             res.status(404).json({mensaje: 'Usuario o contraseña invalidos'});
         }
 
-        const passValidado = bcrypt.compareSync(pass, usuarioEncontrado.password);
+        const passValidado = bcrypt.compareSync(contrasenia, usuarioEncontrado.contrasenia);
         if(!passValidado){
             res.status(400).json({mensaje: 'Usuario o contraseña invalidos!'})
         }
@@ -23,16 +23,17 @@ export const login = async(req,res)=>{
 
 export const crearUsuario = async (req,res) =>{
     try {
-        const {usuario, password} = req.body;
+        const {usuario, contrasenia} = req.body;
+        console.log({usuario,contrasenia});
         const usuarioEncontrado = await Usuario.findOne({usuario});
         if(usuarioEncontrado){
             res.status(200).json({mensaje: 'El usuario ingresado ya existe, vuelva a ingresar otro nuevamente'});
         }
 
         const saltos = bcrypt.genSaltSync(10);
-        const passEncriptada = bcrypt.hashSync(password,saltos );
+        const passEncriptada = bcrypt.hashSync(contrasenia,saltos );
         const usuarioNuevo = new Usuario(req.body);
-        usuarioNuevo.password = passEncriptada;
+        usuarioNuevo.contrasenia = passEncriptada;
         await usuarioNuevo.save();
         res.status(201).json({mensaje: 'El usuario fue creado con exito!'});
     } catch (error) {

@@ -8,14 +8,14 @@ const usuarioSchema = new Schema({
         maxLength: 9,
         unique: true
     },
-    password: {
+    contrasenia: {
         type: String,
-        validate: {
-            validator: function(pass){
-                const expresion = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{4,9}$/;
-                return expresion.test(pass);
-            }
-        },
+        // validate: {
+        //     validator: function(pass){
+        //         const expresion = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{4,9}$/;
+        //         return expresion.test(pass);
+        //     }
+        // },
         required: true
     }
 })
