@@ -1,6 +1,6 @@
 import {check} from 'express-validator';
 
-export const validarRecetas = [
+const validarRecetas = [
     check('titulo').notEmpty().withMessage("El titulo es obligatorio").trim().isLength({min: 4, max:50}).withMessage("El  titulo debe tener entre 4 y 50 caracteres"),
     check('categoria').notEmpty().withMessage("La categoria es obligatoria"),
     check('descripcionBreve').notEmpty().withMessage('La descripcion breve es obligatoria').trim().isLength({min: 4,max:300}).withMessage("La descripcion breve debe tener entre 4 y 300"),
@@ -15,4 +15,6 @@ export const validarRecetas = [
     (req,res,next)=>{
         resultadoValidaciones(req,res,next);
     }
-]
+];
+
+export default validarRecetas;
