@@ -10,5 +10,7 @@ export const validarRecetas = [
     check('urlImagen').notEmpty().withMessage("La url de la imagen es obligatoria").trim().isURL().withMessage("La URL de la imagen es invalida"),
     check('ingredientes').notEmpty().withMessage("Los ingredientes son obligatorios").trim().isLength({min: 3, max:50}).withMessage("El ingrediente debe tener entre 3 y 50 caracteres"),
     check('pasos').notEmpty().withMessage("Los pasos son obligatorios").trim().isLength({min: 3, max: 50}).withMessage("Los pasos tiene entre 3 y 50 caracteres"),
-    
+    (req,res,next)=>{
+        
+    }
 ]
